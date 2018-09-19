@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>ロールオーバ</title>
+<style type="text/css">
+    a{
+        font-size:50px;
+        font-family:sans-serif;
+        text-decoration:none;
+        color:gray;
+    }
+</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){
+    $("#mylist a").hover(
+        function(){
+            $(this).css({
+                "color":"red",
+                "text-decoration":"underline"
+            });
+        },
+        function(){
+            $(this).css({
+                "color":"gray",
+                "text-decoration":"none"
+            });
+        }
+    );
+    $("#mylist a").click(function(){
+        msg=$(this).attr("href");
+        var ans=confirm(msg+"に移動してもよろしいですか？");
+        if(!ans){
+            return false;
+        }
+    });
+});
+
+</script>
+<body>
+<ul id="mylist">
+    <li><a href="http://google.co.jp">Google</a></li>
+    <li><a href="http://yahoo.co.jp">Yahoo</a></li>
+    <li><a href="http://www.facebook.com">Facebook</a></li>
+    <li><a href="http://www.twitter.com">twitter</a></li>
+</ul>
+
+</body>
+</html>

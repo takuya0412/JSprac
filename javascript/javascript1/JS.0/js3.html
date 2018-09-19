@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+ <meta charset="utf-8" />
+ <title>Javascriptサンプル3</title>
+<style>
+ #box   {
+  background:green;
+  width:200px;
+  height:200px;
+ }
+ </style>
+ <script>
+  var timer;
+  var box;
+  function move() {
+   box=document.getElementById('box');
+   box.style.height='200px';
+   timer=setInterval(changeSize,10);
+  };
+  
+  function changeSize(){
+   clearInterval(timer);
+   box.style.height=box.clientHeight+10+'px';
+   if(box.clientHeight>500) clearInterval(timer);
+  };
+ </script>
+ 
+ </head>
+ <body>
+  <input type="button" value="伸びる" onclick="move()" />
+  <div id="box"></div>
+ </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>ajax1</title>
+<script src="../../jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+   $("#loadAll").click(function(){
+       $("#disp").hide().load("images.html",function(){     /*hide()で一旦表示を消した後にフェードインさせている*/
+           $(this).fadeIn("slow");
+       });
+   });
+   $("#load1").click(function(){
+       $("#disp").hide().load("images.html #img1",function(){     /*hide()で一旦表示を消した後にフェードインさせている*/
+           $(this).fadeIn("slow");
+       });
+   });
+   $("#load2").click(function(){
+      $("#disp").hide().load("images.html #img2",function(){
+          $(this).slideDown("fast");
+      });
+   });
+   $("#load3").click(function(){
+      $("#disp").hide().load("images.html #img3",function(){
+          $(this).fadeIn("slow");
+      });
+   });
+});
+</script>
+</head>
+
+<body>
+<form name="form1"><p>
+    <input type="button" id="loadAll" value="全て読み込み" >
+    <input type="button" id="load1" value="イメージ1">
+    <input type="button" id="load2" value="イメージ2">
+    <input type="button" id="load3" value="イメージ3">
+</p></form>
+<div id="disp"></div>
+</body>
+</html>

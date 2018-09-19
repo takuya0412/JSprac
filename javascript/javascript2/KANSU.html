@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script type="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+function kinri(gankin,kikan,rishi){
+    var uketori;
+    uketori=gankin;
+    for(var i=1;i<=kikan;i++){
+        uketori=uketori*(1+rishi/100)
+    }
+    return Math.round(uketori);
+    
+}    
+    
+</script>
+</head>
+<body>
+    <script type="text/javascript">
+        var gankin=10000;
+        var rishi=4;
+        var uketori;
+        document.write("<h1>複利計算</h1>");
+        document.write("<h2>元金：",gankin,"円、利率：",rishi,"%</h2>");
+        for(var i=1;i<=10;i++){
+            uketori=kinri(gankin,i,rishi);
+            document.write("<p>",i,"年後：",uketori,"円</p>");
+        }
+    </script>
+    
+</body>
+</html>

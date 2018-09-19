@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>脳トレゲーム</title>
+</head>
+<script type="text/javascript">
+function getRandom(){
+   return  Math.floor(Math.random()*100);
+}
+
+var numOfQ=10;
+var num1,num2,num3;
+var ans;
+var correct=0;
+
+for(var i=0;i<numOfQ;i++){
+    num1=getRandom();
+    num2=getRandom();
+    msg=num1+"+"+num2+"=";
+    ans=prompt(msg,"")
+    num3=num1+num2;
+    if(ans==num3){
+       correct++;
+     
+    }
+
+}
+document.write("<h1>正解率:",Math.round(correct/numOfQ * 100),"%</h1>");
+document.write("<p>",numOfQ,"問中",correct,"問正解","</p>");
+
+</script>
+<body>
+
+</body>
+</html>

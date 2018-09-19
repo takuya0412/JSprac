@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>フィルター</title>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){
+$("li:first").css("font-size","200%");
+$("li:last").css("font-size","200%");
+$("li:odd").css("background","yellow");
+$("li:even").css("background","pink");
+$("li:contains('JQuery')").css("text-align","right");
+
+});
+
+</script>
+<body bgcolor="#ffffff">
+<div id="header">
+    <h1>JQueryについて</h1>
+    <p id="description"><strong>JQuery</strong>は便利なJavascriptライブラリ。</p>
+</div>
+
+<div id="contents">
+    <h2>JQueryの特徴</h2>
+    <ul id="list">
+        <li class="myClass">クロスブラウザに対応</li>
+        <li class="myClass">豊富な<strong>エフェクト</strong>が用意されている。</li>
+        <li><strong>アニメーション</strong>も簡単に実現</li>
+        <li><span id="mySpan">デザイナー</span>に人気の<em>JQuery</em></li>
+        <li>デザイナーに人気<em>JQuery</em></li>
+    </ul>
+</div>
+
+<div id="footer">
+    <p class="myClass"><strong>JQuery</strong>推進委員会</p>
+    </div>
+</body>
+</html>

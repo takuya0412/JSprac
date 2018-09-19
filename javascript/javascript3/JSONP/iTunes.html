@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="UTF-8">
+<title>iTunes Store検索プログラム</title>
+<script type="text/javascript" src="../../jquery-3.3.1.min.js"></script>
+<style type="text/css">
+#title {
+	height: 80px;
+	font-size:200%;
+}
+</style>
+<script type="text/javascript">
+$(function(){
+	$("#search").click(function(){
+		search($("#keyword").val());
+	});
+	
+	$("#clear").click(function(){
+		$("#display").empty();
+		$("#title").text("");
+	});
+});
+
+function search(keyword){
+	$("#title").text("Loading...");
+	
+	$.ajax({
+		dataType:"jsonp",
+		data:{"term":keyword,
+			  "country":"jp",
+			  "media":"music",
+			  "entity":"album",
+			  "limit":"10"
+		},
+		url:"http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch",
+		success:function(data){
+			$("#title").text("");
+			$.each(data.results,function(i,item){
+				$("<a/>")
+					.attr("href",item.collectionViewUrl)
+					.append("<img src='"+item.artworkUrl100+"'/>")
+					.mouseover(function(){
+						$("#title").text(item.collectionName);
+					})
+					.appendTo("#display");
+			});
+		}
+	});
+}
+</script>
+
+</head> 
+<body> 
+<form id="frmSearch">
+	<input type="text" id="keyword">
+	<input id="search" type="button" value="検索">
+	<input id="clear" type="button" value="クリア">
+</form>
+<div id="title"></div>
+<div id="display"></div>
+</body>
+</html>

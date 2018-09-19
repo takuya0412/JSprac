@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>JSONPの実験</title>
+<script type="text/javascript" src="../../jquery-3.3.1.min.js"></script>
+<style type="text/css">
+#display {
+	font-size:200%
+}
+</style>
+
+<script type="text/javascript">
+$(function(){
+   $("#load").click(function(){
+       $.ajax({
+           dataType:"jsonp",
+           url:"sample.js",
+           jsonpCallback:"myFunc",
+           success:function(data){
+               $("#display").append(data.name+" "+data.mail);
+           },
+       });
+   }); 
+});
+
+
+</script>
+
+
+</head>
+
+<body bgcolor="#FFFFFF">
+<button id="load">JSONP読み込み</button>
+<div id="display"></div>
+
+</body>
+</html>

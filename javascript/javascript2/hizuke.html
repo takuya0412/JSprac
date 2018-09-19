@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>カウントダウンタイマー</title>
+</head>
+<script type="text/javascript">
+window.onload=init;
+function init(){
+    document.sWatch.start.onclick=startWatch;
+    document.sWatch.reset.onclick=stopWatch;
+}
+var timerID;
+function startWatch(){
+    count=parseInt(document.sWatch.time.value);
+    if(count<=0){
+        count=0;
+        return;
+    }else if(timerID){
+        count--;
+    }
+    document.sWatch.time.value=count;
+    document.sWatch.start.disabled=true;
+    
+    if(count==0){
+        clearTimeout(timerID);
+        timerID=0;
+        alert("時間です");
+        return;
+    }
+timerID=setTimeout("startWatch()",1000);
+}
+
+function stopWatch(){
+    document.sWatch.time.value=0;
+    document.sWatch.start.disabled=false;
+    if(timerID){
+        clearTimeout(timerID);
+        timerID=0;
+    }
+}
+
+</script>
+<body>
+<h1>カウントダウンタイマー</h1>
+<form name="sWatch">
+    <p>
+    <input type="text" name="time" size="3" value="10">秒<br>
+    <input type="button" name="start" value="スタート" />
+    <input type="button" name="reset" value="リセット" />
+    
+    </p>
+</form>
+</body>
+</html>

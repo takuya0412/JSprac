@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+ <meta charset="utf-8" />
+ <title>Javascriptサンプル2</title>
+ <script>
+   function calc(){
+       var value1=parseInt(document.getElementById('value-1').value);
+       var value2=parseInt(document.getElementById('value-2').value);
+       var total=value1+value2;
+       alert('合計は'+total);
+   };
+ </script>
+ </head>
+ <body>
+  <label for="value-1">値1</label>
+  <input type="number" id="value-1" />
+  <label for="value-2">値2</label>
+  <input type="number" id="value-2" />
+  <input type="button" value="計算" onclick="calc()" />
+ </body>
+</html>

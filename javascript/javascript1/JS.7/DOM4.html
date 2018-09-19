@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>javascript-動きをつける4</title>
+</head>
+<body>
+    <div id="parent">
+        <div>あいうえお</div>
+    </div>
+<script>
+    var parent=document.getElementById('parent');
+    var children=parent.childNodes;
+    console.log(children);
+    var child=children[1];
+    alert(child.innerHTML);
+</script>
+</body>
+</html>

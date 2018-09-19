@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>脳トレゲーム2</title>
+</head>
+<script type="text/javascript">
+var fHalf=new Array("文武","疑心","悪戦","九夏","意志","奮励","酒池");
+var sHalf=new Array("両道","暗鬼","苦闘","三状","堅固","努力","肉林");
+
+function getRandom(){
+    return Math.floor(Math.random()*fHalf.length);
+}
+
+var numOfQ=5;
+var num;
+var correct=0;
+
+for(var i=0;i<numOfQ;i++){
+    num=getRandom();
+    msg=fHalf[num]+"?";
+    ans=prompt(msg,"");
+    if(ans==sHalf[num]){
+        correct++;
+    }
+}
+
+document.write("<h1>正解率:",Math.round(correct*100/numOfQ),"%</h1>");
+document.write("<p>",numOfQ,"問中",correct,"問正解","</p>");
+</script>
+<body>
+
+</body>
+</html>

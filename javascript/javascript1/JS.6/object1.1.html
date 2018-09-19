@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>オブジェクトサンプル</title>
+    <script>
+
+    // 人間オブジェクトの設計図
+    function Human(name, address, age) {
+      this.name = name;
+      this.address = address;
+      this.age = age;
+    }
+
+    // 自己紹介処理を人間オブジェクトの設計図に追加
+    Human.prototype.introduction = function() {
+      alert('私の名前は' + this.name + 'といいます。\n' + this.address + 'に住んでいて、年齢は' + this.age + '歳です。');
+    }
+
+    // new演算子で新しい人間オブジェクトを作成し、変数へ格納する
+    var taro = new Human('侍太郎', '東京都', '20');
+
+    // 自己紹介する
+    taro.introduction();
+
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>

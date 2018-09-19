@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>スライドショー</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.6.4.min.js"></script>
+<style>
+#display {
+	margin: 0 auto 0 auto;
+	height: 450px;
+	width: 600px;
+	border: 2px solid #666;
+	overflow:hidden;
+}
+
+#display img{
+	/*position: absolute;*/
+	width: 600px;
+	height: 450px;
+}
+
+#control {
+	text-align: center;
+}
+</style>
+
+
+
+</head>
+
+<body bgcolor="#FFFFFF">
+    
+
+<div id="display">
+<img src="slides/loading.jpg" >
+</div>
+
+<div id="control">
+<input type="button" id="prevBtn" value="前へ">
+<input type="button" id="nextBtn" value="次へ">
+<input type="button" id="autoBtn" value="スタート">
+</div>
+
+<script type="text/javascript">
+var numOfphoto=5;
+var currentphoto=1;
+var SLIDEINTERVAL=2000;
+var playing=false;
+var timerID;
+
+/*画像プリロード*/
+$(function(){
+    for(var i=1;i<=numOfphoto;i++){
+        $("<img>").attr("src","slides/img"+i+".jpg");
+    }
+/*ロード画像表示*/    
+    $("#display img").attr("src","slides/img1.jpg");
+    
+    $("#nextBtn").click(function(){
+        if(currentphoto<numOfphoto){
+            currentphoto++;
+        }else{
+            currentphoto=1;
+        };
+        showImage(currentphoto);
+    });
+    
+    $("#prevBtn").click(function(){
+       if(currentphoto==1){
+           currentphoto=numOfphoto;
+       } else{
+           currentphoto--;
+       }
+       showImage(currentphoto);
+       
+    });
+    $("#autoBtn").click(function() {
+        slidshow();
+    })
+});
+
+function showImage(photoNumber){
+    $("#autoBtn").attr('disabled','disabled');
+    $("#nextBtn").attr('disabled','disabled');
+    $("#prevBtn").attr('disabled','disabled');
+    newSlideSrc="slides/img"+photoNumber+".jpg";
+    
+    $("<img>")
+       .attr("src",newSlideSrc)
+       .appendTo("#display");
+       
+    $("#display img:last").animate({marginTop:"-450px"},'slow','swing',
+    function(){
+        $("img:first").remove();
+        $(this).css("marginTop",0);
+        $("#autoBtn").removeAttr('disabled');
+        $("#nextBtn").removeAttr('disabled');
+        $("#prevBtn").removeAttr('disabled');
+    });
+
+}
+
+function slidshow(){
+    if(playing){
+        $("#autoBtn").val("スタート");
+        $("#nextBtn").removeAttr('disabled');
+        $("#prevBtn").removeAttr('disabled');
+        clearTimeout(timerID);
+        playing=false;
+    }else{
+        $("#autoBtn").val("ストップ");
+        $("#nextBtn").attr('disabled','disabled');
+        $("#prevBtn").attr('disabled','disabled');
+        playing=true;
+        slideLoop();
+    }
+}
+
+function slideLoop(){
+    if(currentphoto<numOfphoto){
+        currentphoto++;
+    }else{
+        currentphoto=1;
+    }
+    showImage(currentphoto);
+    timerID=setTimeout("slideLoop()",SLIDEINTERVAL);
+}
+
+</script>
+
+
+</body>
+</html>

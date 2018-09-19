@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html lang="ja"> 
+<head> 
+<meta charset="utf-8">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="jcanvas.min.js"></script>
+<title>Canvasテスト</title> 
+<style type="text/css">
+#myCanvas {
+	border:gray solid thick;
+}
+</style>
+
+<script type="text/javascript">
+$(function(){
+    $("#drawCircle").click(function(){
+        $("#myCanvas").drawEllipse({
+            strokeStyle:"#000",
+            strokeWidth:3,
+            fillStyle:"pink",
+            x:100,y:100,
+            width:100,height:100,
+            fromCenter:true
+        });
+    });
+    
+    $("#drawRect").click(function(){
+        $("#myCanvas").drawRect({
+            strokeStyle:"#000",
+            strokeWidth:3,
+            fillStyle:"#9B0",
+            x:150,y:100,
+            width:300,
+            height:150,
+            fromCenter:false,
+            cornerRadius:10
+        });
+    });
+    
+    $("#clear").click(function() {
+        $("#myCanvas").clearCanvas();
+    });
+    
+    $("#drawLine").click(function() {
+        $("canvas").drawLine({
+            strokeStyle:"#000",
+            strokeWidth:10,
+            x1:150,y1:250,
+            x2:250,y2:350,
+            x3:350,y3:250,
+            x4:450,y4:350,
+            x5:550,y5:250
+        });
+    });
+    
+	var rotAngle = 0;
+	$("#rotate").click(function(){			
+		$("#myCanvas").rotateCanvas({  			
+  			angle: rotAngle,
+  			x: 300, y: 200
+		}).drawRect({
+  			strokeStyle: "#000",
+			fillStyle: "yellow",
+			x: 300, y: 200,
+			width: 300,
+			height: 40,			
+		}).restoreCanvas();
+		
+		rotAngle += 30;
+    })
+});
+
+</script>
+
+</head>
+
+<body>
+<h1>Canvasテスト</h1>
+<button id="drawCircle">円を描く</button>
+<button id="drawRect">長方形を描く</button>
+<button id="drawLine">線を描く</button>
+<button id="clear">キャンバスをクリア</button>
+<button id="rotate">回転のテスト</button>
+<br>
+<canvas id="myCanvas" width="600" height="450"></canvas>
+</body>
+</html>

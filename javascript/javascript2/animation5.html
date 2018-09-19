@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>アニメーション5</title>
+<script src="jquery-3.3.1.min.js"></script>
+
+</head>
+<script type="text/javascript">
+var empty=15;
+$(function(){
+    for(var i=0;i<16;i++){
+        $("<img>")
+            .attr("src","images3/img-"+i+".png")
+            .attr("id","I"+i)
+            .attr("width",125)
+            .attr("height",125)
+            .click(function(){
+                check($(this).attr("id"));
+            })
+            .appendTo("#board");
+            
+        if(i%4==3){
+            $("#board").append("<br>");
+        }
+    }
+    $("#shuffle").click(shuffleImgs);
+});
+
+function check(id){
+    var img1,img2;
+    var hit=false;
+    var num=parseInt(id.substring(1));
+    if((num==(empty-4))||(num==(empty+4))){
+        hit=true;
+    }else if(((num%4)!=0)&&((num-1)==empty)){
+        hit=true;
+    }else if(((num%4)!=3)&&((num+1)==empty)){
+        hit=true;
+    }
+    
+    if(hit==true){
+        img1=$("#I"+num);
+        img2=$("#I"+empty);
+        var tmp=img1.attr("src");
+        img1.attr("src",img2.attr("src"));
+        img2.attr("src",tmp);
+        empty=num;
+    }
+}
+var counter=0;
+function shuffleImgs(){
+    var imgNums;
+
+        imgNums=Math.floor(Math.random()*16);
+        check("I"+imgNums);
+        timer=setTimeout("shuffleImgs()",10);
+        if(counter==300){
+            clearTimeout(timer);
+            counter=0;
+        }else{
+            counter++;
+        }
+    
+}
+</script>
+<body bgcolor="#FFFFFF">
+    <h1>15パズル</h1>
+    <form name="myForm">
+        <p>
+            <input id="shuffle" type="button" value="並び替える" >
+        </p>
+    </form>
+    
+    <div id="board"></div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+<meta charset = "utf-8" />
+<title>javascript-グローバルオブジェクト1</title>
+<script>
+    function Human(name,address,age){
+        this.name = name;
+        this.address = address;
+        this.age = age;
+    }
+    
+    Human.prototype.introduction = function(){
+        alert('私の名前は' + this.name+'といいます。\n' + this.address +'に住んでいて、年齢は' + this.age + '歳です。');
+    }
+    var taro  =  new Human('侍太郎', '東京都', '20');
+    
+    taro.introduction();
+    
+</script>
+</head>
+<body>
+</body>
+</html>

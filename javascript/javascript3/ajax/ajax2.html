@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>ajax2</title>
+<style type="text/css">
+
+tr {
+	background: #0FF;
+}
+
+th {
+	background: #333;
+	color: #DDD;
+}							
+th, td{
+		padding: 5px;
+}
+	
+</style>
+
+<script src="../../jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+   $("#loadAll").click(function(){
+      $.ajax({
+          url:"members.xml",
+          dataType:"xml",
+          success:function(xml){
+              parseXml(xml);
+          }
+          
+      }); 
+   }); 
+});
+
+function parseXml(xml){
+    $("#dis table").remove();
+    var table=$("<table>");
+    $(table).append("<tr><th>ID</th><th>名前</th><th>ユーザ名</th></tr>");
+    $("person",xml).each(function(){
+        $(table).append("<tr><td>"+$("id",this).text()+"</td>"
+        +"<td>"+$("realname",this).text()+"</td>"
+        +"<td>"+$("username",this).text()+"</td></tr>");
+    });
+    
+    $(table).appendTo("#dis");
+    
+}
+</script>
+</head>
+
+<body>
+<form name="form1">
+<p>
+    <input type="button" id="loadAll" value="XMLの読み込み">
+</p>
+</form>
+<div id="dis"></div>
+</body>
+</html>

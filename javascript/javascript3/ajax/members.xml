@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<members>
+	<person>
+		<id>1001</id>
+		<realname>小笠原太郎</realname>
+		<username>ogasa345</username>
+	</person>
+	<person>
+		<id>1002</id>
+		<realname>大河原源三郎</realname>
+		<username>bigf1234</username>		
+	</person>
+	<person>
+		<id>1003</id>
+		<realname>小山田花子</realname>
+		<username>hanakoy3</username>				
+	</person>
+	<person>
+		<id>1004</id>
+		<realname>猫柳虎之助</realname>
+		<username>tigercat1</username>				
+	</person>	
+</members>

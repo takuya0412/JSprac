@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>アニメーション4</title>
+<script src="jquery-3.3.1.min.js"></script>
+<style type="text/css">
+    #myImage{
+        position:absolute;
+        top:20px;
+        left:100px;
+    }
+</style>
+</head>
+<script type="text/javascript">
+var NumOfImage=8;
+var INTERVAL=200;
+var currentImg=1;
+var timerId;
+var isAnimating=false;
+var stopped=false;
+
+$(function(){
+    for(var i=1;i<=NumOfImage;i++){
+        $("<img>").attr("src","images/img"+i+".jpg");
+    }
+   $("<Img id='myImage' width='80' height='120'>").attr("src","images2/1.jpg")
+                                                  .appendTo("#myDiv"); 
+   $("#startBtn").click(function(){
+       if(isAnimating){
+           clearTimeout(timerId);
+           isAnimating=false;
+           $("#startBtn").val("スタート");
+       }else{
+           isAnimating=true;
+           animate();
+           $("#startBtn").val("ストップ");
+       }
+   });
+   $(document).dblclick(function(event){
+       if(isAnimating){
+           stopped=true;
+           clearTimeout(timerId);
+       }
+       $("#myImage").animate({
+           left:event.pageX-$("#myImage").width()/2+"px",
+           top:event.pageY-$("#myImage").height()/2+"px"
+           },"slow","swing",function(){
+               if(stopped){
+                   stopped=false;
+                   animate();
+               }
+           });
+   });
+});
+function animate(){
+    $("#myImage").attr("src","images2/"+currentImg+".jpg");
+    currentImg++;
+    if(currentImg>=NumOfImage){
+        currentImg=1;
+    }
+    timerId=setTimeout("animate()",INTERVAL);
+}
+</script>
+<body>
+<form name="form1"><p>
+    <input type="button" id="startBtn" value="スタート">
+    </p>
+    
+    <div id="myDiv">
+        
+    </div>
+</form>
+</body>
+</html>

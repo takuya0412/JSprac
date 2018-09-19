@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">    
+<title>イメージビューワー</title>
+<script type="../jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    var img;
+    var numOfImages=12;
+    for(var i=1;i<numOfImages;i++){
+        img="img"+i+".jpg"
+        document.write("<a href='images/"+img+"'","target='_blank'",">");
+        document.write("<img src='thumbnails/"+img+"'>");
+        document.write("</a>");
+        
+        if((i%5==0)){
+            document.write("<br>");
+        }
+    }
+
+    
+</script>
+</head>
+<body>
+
+</body>
+</html>

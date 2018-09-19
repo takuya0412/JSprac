@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>スライドショー</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.6.4.min.js"></script>
+<style>
+#display {
+	margin: 0 auto 0 auto;
+	height: 450px;
+	width: 600px;
+	border: 2px solid #666;
+	overflow:hidden;
+}
+
+#display img{
+	/*position: absolute;*/
+	width: 600px;
+	height: 450px;
+}
+
+#control {
+	text-align: center;
+}
+</style>
+
+<script type="text/javascript">
+var numOfPhoto=5;
+var currentPhoto=1;
+var SLIDEINTERVAL=2000;
+var playing=false;
+var timerID;
+
+/*画像プリロード*/
+$(function(){
+	for(var i = 1; i <= numOfPhoto ; i++) {
+		$("<img>").attr("src", "slides/img" + i + ".jpg");
+	}
+	$("#display img").attr("src", "slides/img1.jpg");
+    
+	$("#nextBtn").click(function(){
+		if (currentPhoto < numOfPhoto) {
+			currentPhoto++;		
+		} else {
+			currentPhoto = 1;
+		};
+		showImage(currentPhoto);
+	});
+    
+	$("#prevBtn").click(function(){
+		if (currentPhoto == 1) {
+			currentPhoto = numOfPhoto;	
+		} else {
+			currentPhoto--;
+		}
+		showImage(currentPhoto);
+	});
+    $("#autoBtn").click(function() {
+        slideShow();
+    })
+});
+
+function showImage(photoNumber) {
+	$("#autoBtn").attr('disabled', 'disabled');
+	$("#nextBtn").attr('disabled', 'disabled');	
+	$("#prevBtn").attr('disabled', 'disabled');
+	newSlideSrc ="slides/img" + photoNumber + ".jpg"
+	$("<img>")	
+		.attr("src", newSlideSrc)
+		.appendTo("#display");
+       
+	$("#display img:last").animate({marginTop : "-450px"}, "slow", "swing",	
+		function(){
+			$("img:first").remove();	
+			$(this).css("marginTop", 0);
+			$("#autoBtn").removeAttr('disabled');	
+			$("#nextBtn").removeAttr('disabled');	
+			$("#prevBtn").removeAttr('disabled');
+	});
+}	
+
+function slideShow() {
+	if (playing) {
+		// ラベルを「スタート」に
+		$("#autoBtn").val("スタート");	
+		//「前へ」「次へ」ボタンを有効に
+		$("#nextBtn").removeAttr('disabled');	
+		$("#prevBtn").removeAttr('disabled');
+		// スライドショーを停止する
+		clearTimeout(timerID);	
+		playing = false;	
+	} else {
+		// ラベルを「ストップ」に
+		$("#autoBtn").val( "ストップ");	
+		//「前へ」「次へ」ボタンを無効に
+		$("#nextBtn").attr('disabled', 'disabled');	
+		$("#prevBtn").attr('disabled', 'disabled');
+		playing = true;	
+		//スライドショーを開始する
+		slideLoop();	
+	}
+}
+
+function slideLoop() {
+	if (currentPhoto < numOfPhoto) {
+		currentPhoto++;		
+	} else {
+		currentPhoto = 1;
+	};
+	showImage(currentPhoto);
+	timerID = setTimeout("slideLoop()", SLIDEINTERVAL);
+}
+
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<div id="display">
+<img src="slides/loading.jpg" >
+</div>
+
+<div id="control">
+<input type="button" id="prevBtn" value="前へ">
+<input type="button" id="nextBtn" value="次へ">
+<input type="button" id="autoBtn" value="スタート">	
+</div>
+
+</body>
+</html>

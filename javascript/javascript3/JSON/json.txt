@@ -1,0 +1,20 @@
+{	
+	"person":[
+		{
+			"name": "大津真",
+			"tel": "03-2444-xxxx",
+			"mail": "makoto@example.com"
+		},
+		{
+			"name": "田中一郎",
+			"tel": "03-4444-xxxx",
+			"mail": "tanaka@example.com"
+		},
+		{
+			"name": "山田花子",
+			"tel": "03-2222-xxxx",
+			"mail": "hanako@example.com"
+		}
+	]
+}
+

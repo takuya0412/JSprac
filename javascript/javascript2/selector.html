@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>セレクターの理解</title>
+<style type="text/css">
+    #mydiv{ position:relative;
+            width:200px;
+            height:100px;
+            }
+</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){
+   $("h1").css("background-color","yellow");
+   
+   $("strong,em").css({
+       "font-size":"150%",
+       "font-stye":"italic",
+       "color":"blue"
+   })
+   
+   $("#footer").css("text-align","right");
+   $("li.myClass").css("font-weight","bold");
+   $("ul#list strong").css("font-size","300%");
+   $("li *").css("text-decoration","underline");
+});
+
+</script>
+<body bgcolor="#ffffff">
+<div id="header">
+    <h1>JQueryについて</h1>
+    <p id="description"><strong>JQuery</strong>は便利なJavascriptライブラリ。</p>
+</div>
+
+<div id="contents">
+    <h2>JQueryの特徴</h2>
+    <ul id="list">
+        <li class="myClass">クロスブラウザに対応</li>
+        <li class="myClass">豊富な<strong>エフェクト</strong>が用意されている。</li>
+        <li><strong>アニメーション</strong>も簡単に実現</li>
+        <li><span id="mySpan">デザイナー</span>に人気の<em>JQuery</em></li>
+        <li>デザイナーに人気<em>JQuery</em></li>
+    </ul>
+</div>
+
+<div id="footer">
+    <p class="myClass"><strong>JQuery</strong>推進委員会</p>
+    </div>
+</body>
+</html>

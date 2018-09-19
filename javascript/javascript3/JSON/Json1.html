@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>JSON読み込み</title>
+<style type="text/css">
+
+#myArea {
+	text-align: center;
+	background:#FFFF00;
+}
+th,td {border :solid green 1px;}
+
+</style>
+
+<script src="../../jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#load").click(function(){
+        $.ajax({
+            dataType:"json",
+            url:"json.txt",
+            success:function(data){
+                $("#myArea table").remove();
+                person=data.person;
+                var theTable=$("<table>");
+                for(var i=0;i<person.length;i++){
+                    theTable.append("<tr><td>"
+                    +person[i].name+"</td>"
+                    +"<td>"+person[i].tel+"</td>"
+                    +"<td>"+person[i].mail+"</td></tr>");
+                }
+                theTable.appendTo("#myArea");
+            }
+        });
+    });
+});
+</script>
+</head>
+
+<body>
+<form name="myForm">
+    <p>
+        <input type="button" id="load" value="JSONファイルのダウンロード">
+    </p>
+</form>
+<div id="myArea"></div>
+</body>
+</html>

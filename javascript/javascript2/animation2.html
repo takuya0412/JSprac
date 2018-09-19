@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>アニメーション2</title>
+<style type="text/css">
+#myArea{
+    font-size:50pt;
+    font-weight:bold;
+    background-color:yellow;
+}
+.unsei{
+    font-size:50pt;
+    font-weight:bold;
+    background-color:pink;
+}
+</style>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+var proverbs=new Array(5);
+proverbs[0]="急がば回れ";
+proverbs[1]="<em>弘法</em>も筆の誤り";
+proverbs[2]="<em>時</em>は金なり";
+proverbs[3]="飼い<em>犬</em>に手をかまれる";
+proverbs[4]="義を見てせざるは<em>勇無き</em>なり";
+
+$(function(){
+    $("#changeKotowazaBtn").click(function(){
+       var num=Math.floor(proverbs.length*Math.random());
+       $("#myArea").html(proverbs[num]);
+    
+    });
+    $("#showHideBtn").click(function(){
+        if($("#myArea").css("display")=="block"){
+              $("#myArea:not(:animated)").hide("slow",function(){
+                  $(this).css("background-color","yellow");
+              });
+              $("#showHideBtn").val("ことわざを表示する"); 
+        }else if($("#myArea").css("display")=="none"){
+              $("#myArea:not(:animated)").show("slow",function(){
+                  $(this).css("background-color","red");
+              });
+              $("#showHideBtn").val("ことわざを消す");   
+        }
+    });
+    $("#showUnsei").click(function() {
+        var unseis=["大吉","中吉","凶"];
+        unsei=unseis[Math.floor(unseis.length*Math.random())];
+        $("body").append("<div class='unsei'>"+unsei+"</div>");
+    });
+    $("#removeUnsei").click(function(){
+        $("div.unsei:last").remove();
+    });
+});
+
+</script>
+<body>
+<form name="form1">
+    <p>
+        <input type="button" id="changeKotowazaBtn" value="チェンジ">
+        <input type="button" id="showHideBtn" value="ことわざを消す">
+        <input type="button" id="showUnsei" value="占う">
+        <input type="button" id="removeUnsei" value="占いを消す">
+    </p>
+</form>
+<h1>今日のことわざ</h1>
+<div id="myArea">
+    <em>猿</em>も木から落ちる
+</div>
+</body>
+</html>

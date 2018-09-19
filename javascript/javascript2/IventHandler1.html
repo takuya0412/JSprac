@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script type="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+   var count=0;
+   window.onload=init;
+   function init(){
+       document.form1.btn1.onclick=clickCheck;
+   }
+   function clickCheck(){
+       count++;
+       alert("クリック回数:"+count)
+   }
+</script>
+</head>
+<body>
+    <h1>イベントハンドラのテスト</h1>
+
+<form name="form1">
+    <p>
+        <input name="btn1" type="button" value="クリック" >
+    </p>
+</form>
+</body>
+</html>

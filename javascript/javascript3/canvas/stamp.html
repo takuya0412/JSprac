@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html lang="ja">
+<head> 
+<meta charset="utf-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="jcanvas.min.js"></script>
+<title>グラフィックスタンプ</title> 
+<style type="text/css">
+#myCanvas {
+	border:gray solid thick;
+}
+</style>
+
+<script type="text/javascript">
+var myImg;
+$(function(){
+myImg = "images/" + $('input:radio[name="selectImg"]').val() + ".png"
+        
+    $("#myCanvas").click(function(e){
+        var offset=$("#myCanvas").offset();
+        var posX=e.clientX-offset.left;
+        var posY=e.clientY-offset.top;
+        if($('input:checkbox[name="shadow"]').attr("checked")){
+            $("#myCanvas").drawImage({
+                source:myImg,
+                shadowColor:"#888",
+                shadowBlur:3,
+                shadowX:5,shadowY:5,
+                x:posX,y:posY
+            });
+        }else{
+            $("#myCanvas").drawImage({
+                source:myImg,
+                x:posX,y:posY
+            });
+        }
+    });
+    
+    $('input:radio[name="selectImg"]').change(function(){
+        myImg="images/"+$(this).val()+".png";
+    });
+    
+    $("#clear").click(function(){
+        $("#myCanvas").clearCanvas();
+    });
+})
+
+
+</script>
+</head>
+
+<body>
+<h1>グラフィックスタンプ</h1>
+<canvas id="myCanvas" width="700" height="400"></canvas>
+<br>
+<form autocomplete="off">
+イメージ：<input type="radio" name="selectImg" id="selectImg" value="fish" checked >魚
+<input type="radio" name="selectImg" value="dog">犬
+<input type="radio" name="selectImg" value="cat">猫
+<input type="checkbox" name="shadow" value="shadow">影
+<button id="clear">キャンバスをクリア</button>
+</form>
+
+</body>
+</html>

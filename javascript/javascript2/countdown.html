@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>日付表示オブジェクト</title>
+</head>
+<script type="text/javascript">
+var now,heisei,theDate;
+var days=new Array("日","月","火","水","木","金","土");
+now=new Date();
+heisei=now.getFullYear()-1988;
+theDay=days[now.getDay()];
+theDate="平成"+heisei+"年"+(now.getMonth()+1)+"月"+now.getDate()+"日"+"("+theDay+")";
+document.write("<h1>",theDate,"</h1>");
+
+</script>
+<body>
+
+</body>
+</html>
